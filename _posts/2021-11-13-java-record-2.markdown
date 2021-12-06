@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "基本数据类型"
+title:  "Java入门(二)"
 subtitle: 
 cover-img: 
 thumbnail-img:
 share-img: 
 date: 2021-11-14 10:23:01 +0800
-tags: [Java, Java AP]
+tags: [Java,Java API,数据类型]
 ---
 
 #### Java相关问题的回答：
@@ -32,6 +32,21 @@ tags: [Java, Java AP]
 字符型（`char[2]`），存放单个字符'a'；
 
 布尔类型（`boolean[1]`），存放`true`，`false`；
+
+{: .box-note}
+**Note:** 基本数据类型的转换：
+
+1.有多种数据混合运算时，系统首先自动将所有的数据转换成容量最大的数据类型，再进行转换；
+
+2.大的数据类型无法赋值给小的数据类型，小的数据类型可以赋值给大的数据类型；
+
+3.``byte、short`和`char`之间不会相互自动转换，`Boolean`不参与转换；
+
+4.`byte、short、char`三者可以计算，计算时首先转换为`int`类型；
+
+5.**自动提升原则：**表达式结果的类型自动提升为操作数中最大的类型。
+
+
 
 ###### 引用数据类：
 
