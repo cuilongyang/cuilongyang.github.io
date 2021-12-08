@@ -9,7 +9,7 @@ date: 2021-12-07 18:42:26 +0800
 tags: [Java, 运算符, 原码]
 ---
 
-算术运算符对数值进行计算:
+#### 算术运算符对数值进行计算:
 
 ```java
 System.out.println(10 / 4);
@@ -19,9 +19,6 @@ System.out.println(10.0 / 4);
 double d = (10 / 4);
 System.out.println(d);
 //此时的结果为2.0   2.0和2是不一样的，数据类型不一样
-```
-
-```Java
 System.out.println(10 % -3);//此时的结果为1
 System.out.println(-10 % -3);  //结果为-1
 ```
@@ -47,7 +44,7 @@ int k = j++;
 
 a^b 表示，a和b不同时，结果为True，否则结果为False
 
-##### 短路（&&）与 和逻辑与（&）
+#### 短路（&&）与 和逻辑与（&）:
 
 
 
@@ -70,7 +67,7 @@ if (a < 1 & ++b < 50){
 
 
 
-##### 短路或（||）和逻辑或（|）
+#### 短路或（||）和逻辑或（|）:
 
 
 
@@ -98,7 +95,7 @@ System.out.println("z="+z);//此时输出结果为50
 
 
 
-##### 三元运算符
+#### 三元运算符:
 
 基本语法：条件表达式？ 表达式1：表达式2；
 
@@ -130,7 +127,7 @@ int max = (n1 > n2 ? n1:n2) >n3 ? (n1 > n2 ? n1:n2):n3;
 
 
 
-##### 运算符的优先级：
+#### 运算符的优先级：
 
 `(){}`>`++ --`>`算数运算符`>`位移运算符`>`比较运算符`>`逻辑运算符`>`三元运算符`>`赋值运算符`
 
@@ -144,7 +141,7 @@ int max = (n1 > n2 ? n1:n2) >n3 ? (n1 > n2 ? n1:n2):n3;
 import java.util.Scanner;//导入这个包
 public class Input{
     public static void main(String[] args){
-        Scanner myScanner = new Scanner(Sytem.in);
+        Scanner myScanner = new Scanner(System.in);
         //创建Scanner对象，myScanner就是我们创建的对象
         System.out.println("请输入名字");
         //如果用户在此不输入，那么程序就会停在这里
@@ -160,7 +157,7 @@ public class Input{
 
 
 
-##### 四种进制：
+#### 四种进制：
 
 
 
@@ -199,7 +196,7 @@ public class Input{
 
 **0b11010101 = 0xD5**
 
-##### 位运算符（BItOperator）：
+#### 位运算符（BItOperator）：
 
 Java中一共有七个位运算（`&`、`|`、`^`、`~`、`>>`、`<<`、和`>>>`）
 
@@ -253,7 +250,7 @@ int e = 15 >> 2;//15 / 2 / 2      向下取整结果为3
 
 
 
-##### **※原码、反码和补码：**
+#### **※原码、反码和补码：**
 
 **对于有符号的而言：**
 
