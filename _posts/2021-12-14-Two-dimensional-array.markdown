@@ -26,7 +26,7 @@ tags: [Java, 冒泡排序, 二维数组]
 ```java
 public class BubbleTest{
 	public static void main(String[] args){
-		int[] array = {24，69，80，57，13};
+		int[] array = {24,69,80,57,13};
 		int temp = 0;
 		for(int i = 0;i < 4;i++){
 			for(int j = 0;j < 4 -i;j++){
