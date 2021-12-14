@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "排序、二维数组"
+title:  "冒泡排序、二维数组"
 subtitle: 
 cover-img: 
 thumbnail-img:
@@ -11,25 +11,51 @@ tags: [Java, 冒泡排序, 二维数组]
 
 #### 冒泡排序（Bubblesort）：
 
-冒泡排序（bubblesort）：我们将五个无序的：24，69，80，57，13使用冒泡排序将其变为一个从小到大的有序数列。（注释部分的是正确的方法，自己写的有些问题思路不是很清晰）
+冒泡排序（bubblesort）：我们将五个无序的：24，69，80，57，13使用冒泡排序将其变为一个从小到大的有序数列。
+
+1.我们一共有5个元素，进行了4轮排序，可以看成是外层循环。
+
+2.每一层可以确定一个数的位置，第一次确定最大数，第二次确定第二大的数。
+
+3.当进行比较时，如果后边的数大于前边的数，那么就进行交换
+
+4.每轮比较的次数在减少，有四次>三次>二次>一次。
+
+代码实现如下：  //如果前边的数大于后边的数，前边的数时`array[j]` 后边的数时`array[j+1]`
 
 ```java
-public class Bubblesort{
+public class BubbleTest{
+	public static void main(String[] args){
+		int[] array = {24，69，80，57，13};
+		int temp = 0;
+		for(int i = 0;i < 4;i++){
+			for(int j = 0;j < 4 -i;j++){
+			    if(array[j] > array[j+1]){
+					temp = array[j];
+					array[j] = array[j+1];
+					array[j+1] = temp;
+			    }
+		    }
+	    }
+	    for(int i = 0;i < array.length;i++){
+			System.out.print(array[i]+" ");
+        }
+	}
+}
+```
+
+如果数组的个数不固定，那么代码如下：
+
+```java
+public class BubbleSort{
 	public static void main(String[] args){
 		int[] array = {24,69,80,57,13};
-		for(int i = 0;i < array.length;i++){
-      //for(int i = 0;i < array.length-1;i++){
-      //我们在对比外层的时候需要比较(array.length-1)次
-      //第一个拿出来了，和剩下的比较，所以时(array.length-1)次
-			for(int j = 0;j < i;j++){
-          //for(int j = 0;j < array.length - 1 - i;j++){
-				if(array[i] < array[j]){
-              //if(array[i] < array[j+1]){
-              //这里是第一个分别和后边的所有比较，结束最大的一定在最后一个
-              //后续再次比较时除最后一个外其他进行比较，那么就次数比外层减少1
-	                int temp = array[i];//int temp = array[i]; 
-					array[i] = array[j];//array[j] = array[j+1];
-					array[j] = temp;//array[j+1] = temp;
+        for(int i = 0;i < array.length-1;i++){
+            for(int j = 0;j < array.length - 1 - i;j++){
+              if(array[j] < array[j+1]){
+	                int temp = array[j]; 
+					array[j] = array[j+1];
+					array[j+1] = temp;
 				}
 			}
 		}
