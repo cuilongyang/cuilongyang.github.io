@@ -158,3 +158,59 @@ public class YangHui{
 }
 ```
 
+**编程思路分析：**
+
+在一个升序的数组中，添加一个元素，使其添加完毕后仍然是一个升序的数组。
+
+首先我们需要知道我们要添加的元素在这个数组中的位置。采用`index`来记录这个值，如果遍历数组都没有找到这个值，那么我们就把这个值添加到最后。
+
+首先定义`index= -1` ，最后我们判断`index`是否是-1来判断是否找到了这个位置。
+
+我们需要对比每个元素的下标，如果该元素的下标正好是`index`那么我们就跳过这个元素，其余的元素进行拷贝。
+
+**如何跳过？**
+
+定义两个值，i和j两个都进行遍历，如果`i`不等于`index`，那么我们可以知道这里就是正常拷贝的，就进行`j++`;
+
+如果`index`等于`i`,那么说我们需要跳过这个元素，我们将需要添加的元素放在这个位置。这样就通过两个值来取到拷贝的值。代码如下：
+
+```java
+import java.util.Scanner;
+public class Homework{
+	public static void main(String[] args){
+		int[] array = {10,12,45,90};
+		int index = -1;
+		System.out.println("The current array is");
+		for(int i = 0;i < array.length;i++){
+			System.out.print(array[i]+" ");
+		}
+		Scanner myScanner = new Scanner(System.in);
+		System.out.println("Enter Your number: ");
+		int number = myScanner.nextInt();
+		for(int i = 0;i < array.length;i++){
+			if(number <= array[i]){ 
+			    index = i;  
+				break;
+			}						
+		}
+		if(index == -1){
+			index = array.length;
+		}
+		int[] newarr = new int[array.length + 1];
+		for(int i = 0,j = 0;i < newarr.length;i++){
+
+			if(i != index){
+				newarr[i] = array[j];
+				j++;
+			}else{
+				newarr[i] = number;
+			}
+		}
+		array = newarr;
+		for(int i = 0;i < array.length;i++){
+			System.out.print(array[i]+" ");
+		}	
+	}
+}
+```
+
