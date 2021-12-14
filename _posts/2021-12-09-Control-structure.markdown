@@ -81,7 +81,7 @@ public class If01{
         if(score > 8.0){
             System.out.println("please enter your gender");
             char gender = myScanner.next().charAt(0);
-            if(gender == 'men'){
+            if(gender == 'm'){
                  System.out.println("Congratulations on entering the Men's Team final");
             }
             else{
@@ -147,7 +147,7 @@ public class If01{
 #### for循环控制：
 
    ```java
-   for(循环变量初始化；循环条件；循环变量迭代){
+   for(循环变量初始化;循环条件;循环变量迭代){
         循环操作(可以多条语句)
    }
    ```
@@ -188,7 +188,7 @@ public class For01{
 #### while循环控制：
 
 ```java
-循环变量初始化；
+循环变量初始化;
 while(循环条件){
     循环体(语句);
     循环变量迭代;
@@ -212,7 +212,7 @@ public class While{
 #### do..while循环控制：
 
 ```java
-循环变量初始化；
+循环变量初始化;
 do{              //先执行，在判断
     循环体(语句);
     循环变量迭代;
