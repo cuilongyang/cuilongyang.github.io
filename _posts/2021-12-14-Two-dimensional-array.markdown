@@ -76,8 +76,7 @@ public class SeqSearch{
 ```java
 public class TwoDimensionalArray{
 	public static void main(String[] args){
-		int[][] array = {{0,0,1,0,},{0,1,0,1},
-						 {1,0,1,0},{0,1,0,0}};
+		int[][] array = {{0,0,1,0},{0,1,0,1},{1,0,1,0},{0,1,0,0}};
 		for(int i = 0;i < array.length;i++){
         //遍历数组的每个元素（数组）
 			for(int j = 0;j < array[i].length;j++){
