@@ -106,24 +106,6 @@ public class TwoDim{
 
 练习：
 
-将以下二维数组所有元素的和，求出和：
-
-```java
-public class TwoDimExercise{
-	public static void main(String[] args){
-		int array[][] = {{4,6},{1,4,5,7},{-2}};
-		int sum = 0;
-		for(int i = 0;i < array.length;i++){
-			for(int j = 0;j < array[i].length;j++){				
-				 sum += array[i][j];
-			}
-			
-		}
-		System.out.println("sum="+sum);
-	}
-}
-```
-
 杨辉三角：中间每一个元素等于上方元素和上方左边元素之和。
 
 ```java
