@@ -73,23 +73,6 @@ public class SeqSearch{
 
 一维数组的每个元素又是一个数组，所以称为二维数组。
 
-```java
-public class TwoDimensionalArray{
-	public static void main(String[] args){
-		int[][] array = {{0,0,1,0},{0,1,0,1},{1,0,1,0},{0,1,0,0}};
-		for(int i = 0;i < array.length;i++){
-        //遍历数组的每个元素（数组）
-			for(int j = 0;j < array[i].length;j++){
-        //array[i].length得到对应的每个一维数组的长度
-				System.out.print(array[i][j] + " ");
-        //这里输出一维数组
-			}
-			System.out.println();//换行
-		}
-	}
-}
-```
-
 `//如果我们想要得到第(i)个一维数组的第(j)个值，表示的是array[i-1][j-1]`
 
 #### 二维数组的使用：
