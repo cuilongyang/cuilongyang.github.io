@@ -848,7 +848,7 @@ table tr td :last-child {
 
 code {
   padding: 0.125rem 0.25rem;
-  color: #c7254e;
+  color: #aaa016;
   background-color: #f9f2f4;
   border-radius: 0.25rem;
 }
@@ -968,7 +968,7 @@ pre {
   font-size: 0.875rem;
   padding: 0.625rem;
   font-style: italic;
-  color: #777;
+  color: rgb(3, 109, 109);
   margin: 0;
   display: block;
   border-bottom-right-radius: 0.3125rem;
