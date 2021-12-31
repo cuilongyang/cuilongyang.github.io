@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 匿名内部类（Anonymous Inner Class）、静态内部类 "
+title:  " 匿名内部类（Anonymous Inner Class） "
 subtitle: 
 cover-img: 
 thumbnail-img:
