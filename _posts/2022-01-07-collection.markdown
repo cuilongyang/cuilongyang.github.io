@@ -17,9 +17,9 @@ tags: [Java, ]
 
 Map接口实现子类是双列集合，存放的是k-v（键值对）
 
-![](C:\Users\cuilo\Documents\Github\cuilongyang.github.io\assets\img\blogpic\collection.png)
+![](\assets\img\blogpic\collection.png)
 
-![](C:\Users\cuilo\Documents\Github\cuilongyang.github.io\assets\img\blogpic\Map.png)
+![](\assets\img\blogpic\Map.png)
 
 
 
