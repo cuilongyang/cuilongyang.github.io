@@ -40,8 +40,8 @@ title-img: "/assets/img/avatar-icon.png"
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "cuilongyang@gmail.com"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  instagram: cuilongyang
+  # rss: true  # remove this line if you don't want to show an RSS link at the bottom
+  instagram: longyang.cui
   github: cuilongyang
   twitter: cuilongyang
   # patreon: DeanAttali
@@ -67,7 +67,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
+# rss-description: This website is a virtual proof that I'm awesome
 
 # --- General options --- #
 
@@ -83,16 +83,16 @@ share-links-active:
 url-pretty: "cuilongyang.com"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
-excerpt_length: 50
+excerpt_length: 0
 
 # Whether or not to show an excerpt for every blog post in the feed page
-feed_show_excerpt: true
+feed_show_excerpt: false
 
 # Whether or not to show a list of tags below each post preview in the feed page
-feed_show_tags: true
+feed_show_tags: false
 
 # Add a search button to the navbar
-post_search: true
+post_search: false
 
 # The keywords to associate with your website, for SEO purposes
 #keywords: "my,list,of,keywords"
@@ -121,7 +121,7 @@ footer-hover-col: "#0085A1"
 #page-img: "/assets/img/bgimage.png"
 
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
-#mobile-theme-col: "#0085A1"
+mobile-theme-col: "#0085A1"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
 #site-css:
@@ -204,7 +204,7 @@ footer-hover-col: "#0085A1"
 # --- Misc --- #
 
 # Ruby Date Format to show dates of posts
-date_format: "%B %-d, %Y"
+date_format: " %Y,%B %-d"
 
 # Facebook App ID
 #fb_app_id: ""
