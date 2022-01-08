@@ -12,7 +12,7 @@ html {
 
 body {
   font-family: 'Lora', 'Times New Roman', serif;
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: {{ site.text-col | default: "#404040" }};
   position: relative;
   background-color: {{ site.page-col | default: "#FFFFFF" }};
@@ -24,7 +24,7 @@ body {
 }
 p {
   line-height: 1.5;
-  margin: 1.875rem 0;
+  margin: 1.5rem 0;
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -433,14 +433,14 @@ footer .footer-custom-content {
 /* --- Post preview (feed) --- */
 
 .post-preview {
-  padding: 1.25rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid #eee;
   overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .post-preview {
-    padding: 2.1875rem 0;
+    padding: 2rem 0;
   }
 }
 
@@ -461,20 +461,20 @@ footer .footer-custom-content {
 }
 
 .post-preview .post-title {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   margin-top: 0;
 }
 .post-preview .post-subtitle {
   margin: 0;
   font-weight: 300;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.5rem;
 }
 .post-preview .post-meta,
 .post-heading .post-meta {
   color: #808080;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-style: italic;
-  margin: 0 0 0.625rem;
+  margin: 0 0 0.5rem;
   font-family: 'Lora', 'Times New Roman', serif;
 }
 .post-heading .post-meta {
@@ -487,14 +487,14 @@ footer .footer-custom-content {
   }
 }
 .post-heading .post-meta .middot {
-  margin: 0 0.625rem;
+  margin: 0 0.5rem;
 }
 .post-preview .post-entry {
   width: 100%;
 }
 .post-preview .post-image {
   float: right;
-  margin-left: 0.625rem;
+  margin-left: 0.5rem;
   height: 12rem;
   width: 12rem;
 }
@@ -545,7 +545,7 @@ footer .footer-custom-content {
 
 @media (min-width: 768px) {
   .post-preview .post-title {
-    font-size: 2.25rem;
+    font-size: 1.875rem;
   }
 }
 
@@ -615,7 +615,7 @@ footer .footer-custom-content {
 /* --- Post and page headers --- */
 
 .intro-header {
-  margin: 5rem 0 1.25rem;
+  margin: 4rem 0 1rem;
   position: relative;
 }
 .intro-header.big-img {
@@ -847,10 +847,10 @@ table tr td :last-child {
 /* --- Code blocks --- */
 
 code {
-  padding: 0.125rem 0.25rem;
+  padding: 0.15rem 0.4rem;
   color: #b04ddd;
   background-color: #f9f2f4;
-  border-radius: 0.25rem;
+  border-radius: 0.4rem;
 }
 
 pre code {
@@ -860,10 +860,10 @@ pre code {
 }
 
 pre {
-  font-size: 0.875rem;
-  line-height: 1.5em;
-  border-radius: 0.25rem;
-  padding: 0.59375rem;
+  font-size: 1rem;
+  line-height: 2em;
+  border-radius: 0.5rem;
+  padding: 0.875rem;
 }
 .highlight pre {
   border: none;
@@ -965,8 +965,8 @@ pre {
 
 .blog-post .caption {
   text-align: center;
-  font-size: 0.875rem;
-  padding: 0.625rem;
+  font-size: 0.5rem;
+  padding: 0.3rem;
   font-style: italic;
   color: rgb(3, 109, 109);
   margin: 0;
@@ -977,8 +977,8 @@ pre {
 
 .blog-post hr {
   max-width: 25%;
-  border-width: 0.25rem;
-  border-radius: 0.1875rem;
+  border-width: 0.2rem;
+  border-radius: 0.15rem;
   border-color: #808080;
 }
 
