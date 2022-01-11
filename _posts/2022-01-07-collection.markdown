@@ -53,20 +53,20 @@ public interface Collection<E> extends Iterable<E>
 - removeAll：删除多个元素
 
   ```java
-          List col = new ArrayList();
-          col.add("belle");
-          col.add(100);// 相当于存入Integer 100
-          col.add(true);
-          System.out.println(col);
-          col.remove(0);
-          System.out.println(col);
-          col.contains("true");// boolean
-          col.size();// 返回一共有多少个元素
-          List list = new ArrayList();
-          list.add("红楼梦");
-          list.add("三国");
-          col.addAll(list);
-          System.out.println(col);
+  List col = new ArrayList();
+  col.add("belle");
+  col.add(100);// 相当于存入Integer 100
+  col.add(true);
+  System.out.println(col);
+  col.remove(0);
+  System.out.println(col);
+  col.contains("true");// boolean
+  col.size();// 返回一共有多少个元素
+  List list = new ArrayList();
+  list.add("红楼梦");
+  list.add("三国");
+  col.addAll(list);
+  System.out.println(col);
   ```
 
   #### Iterator迭代器：快捷键 `itit`    查询所有快捷键  `Ctrl + j`
@@ -77,11 +77,11 @@ public interface Collection<E> extends Iterable<E>
   4. Iterator 仅用于遍历集合，Iterator本身并不存放对象。
 
 ```java
-        Iterator iterator = coll.iterator();
-        while(iterator.hasNext()){
-            //next();//指针下移，将下移以后集合位置上的元素返回
-            System.out.println(iterator.next());
-        }
+Iterator iterator = coll.iterator();
+while(iterator.hasNext()){
+    //next();//指针下移，将下移以后集合位置上的元素返回
+    System.out.println(iterator.next());
+}
 ```
 
 `hasNext()` 判断是否还有下一个元素，如果有没有就返回一个`false`
@@ -89,17 +89,17 @@ public interface Collection<E> extends Iterable<E>
 在调用`iterator.next()` 之前必须调用 `iterator.hasNext()` 进行检测，如果不检测。且下一条记录无效，则会直接调用`iterator.next()`  抛出 `NoSuchElementException` 异常；实例如下：
 
 ```java
-        Collection coll = new ArrayList();
-        coll.add("belle");
-        coll.add("love");
-        coll.add("me");
-        System.out.println(coll);
+Collection coll = new ArrayList();
+coll.add("belle");
+coll.add("love");
+coll.add("me");
+System.out.println(coll);
 
-        Iterator iterator = coll.iterator();
-        while(iterator.hasNext()){
-            Object obj = iterator.next();
-            System.out.println(obj);
-        }
+Iterator iterator = coll.iterator();
+while(iterator.hasNext()){
+    Object obj = iterator.next();
+    System.out.println(obj);
+}
 ```
 
 如果想要再次遍历，需要重置迭代器： 
@@ -111,14 +111,14 @@ iterator = coll.iterator();
 增强for循环：底层仍然是迭代器，将`col`的元素挨个放入`str`
 
 ```java
-        Collection col = new ArrayList();
-        col.add("belle");
-        col.add("love");
-        col.add("me");
-        System.out.println(col);
-        for(Object str:col){
-            System.out.println(str);
-        }
+Collection col = new ArrayList();
+col.add("belle");
+col.add("love");
+col.add("me");
+System.out.println(col);
+for(Object str:col){
+    System.out.println(str);
+}
 ```
 
 

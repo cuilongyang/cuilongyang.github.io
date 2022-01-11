@@ -72,13 +72,13 @@ List的三种遍历：迭代器，增强for，普通for
 2. 当初次创建ArrayList对象时，如果使用的时无参构造器，则初始`elementData`容量为0，加入一个元素，扩容为10，后续按照1.5倍进行扩容。`（10，15，22，33.....)`；**如果时指定大小的构造器，扩容的话直接以1.5倍扩容。**
 
 3. ```java
-           ArrayList list = new ArrayList();
-           for (int i = 0; i < 10; i++) {
-               list.add(i);
-           }
-           for (int i = 11; i < 15; i++) {
-               list.add(i);
-           }
+       ArrayList list = new ArrayList();
+       for (int i = 0; i < 10; i++) {
+           list.add(i);
+       }
+       for (int i = 11; i < 15; i++) {
+           list.add(i);
+       }
    ```
 
    ```java
@@ -89,36 +89,36 @@ List的三种遍历：迭代器，增强for，普通for
    创建了一个无参构造器，`elementData数组 = {}`,然后进行下步骤执行`list.add`：
 
    ```java
-       public boolean add(E e) {
-           modCount++;//记录被修改的次数
-           add(e, elementData, size);//该步骤源码在下方
-           return true;
-       }
+   public boolean add(E e) {
+       modCount++;//记录被修改的次数
+       add(e, elementData, size);//该步骤源码在下方
+       return true;
+   }
    ```
 
    ```java
-       private void add(E e, Object[] elementData, int s) {
-           if (s == elementData.length)// 此处s = 10,进入扩容
-               elementData = grow();//该步骤源码在下方
-           elementData[s] = e;
-           size = s + 1;
-       }
+   private void add(E e, Object[] elementData, int s) {
+       if (s == elementData.length)// 此处s = 10,进入扩容
+           elementData = grow();//该步骤源码在下方
+       elementData[s] = e;
+       size = s + 1;
+   }
    ```
 
    先确定是否需要扩容，再执行赋值，不够进行去扩容，以下为扩容机制：
 
    ```java
-       private Object[] grow(int minCapacity) {
-           int oldCapacity = elementData.length;
-           if (oldCapacity > 0 || elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
-               int newCapacity = ArraysSupport.newLength(oldCapacity,
-                       minCapacity - oldCapacity, /* minimum growth */
-                       oldCapacity >> 1           /* preferred growth */);
-               return elementData = Arrays.copyOf(elementData, newCapacity);
-           } else {
-               return elementData = new Object[Math.max(DEFAULT_CAPACITY, minCapacity)];
-           }
+   private Object[] grow(int minCapacity) {
+       int oldCapacity = elementData.length;
+       if (oldCapacity > 0 || elementData != DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+           int newCapacity = ArraysSupport.newLength(oldCapacity,
+                   minCapacity - oldCapacity, /* minimum growth */
+                   oldCapacity >> 1           /* preferred growth */);
+           return elementData = Arrays.copyOf(elementData, newCapacity);
+       } else {
+           return elementData = new Object[Math.max(DEFAULT_CAPACITY, minCapacity)];
        }
+   }
    ```
 
    `ArraysSupport.newLength(oldCapacity, minCapacity - oldCapacity,  oldCapacity >> 1  );`
@@ -199,23 +199,23 @@ class Node{
 ·创建一个LinkedList后调用无参构造器：    `public LinkedList() {}`
 
 ```java
-    public boolean add(E e) {
-        linkLast(e);
-        return true;
-    }
+public boolean add(E e) {
+    linkLast(e);
+    return true;
+}
 ```
 
 ```java
-    void linkLast(E e) {
-        final Node<E> l = last;
-        final Node<E> newNode = new Node<>(l, e, null);
-        last = newNode;
-        if (l == null)
-            first = newNode;
-        else
-            l.next = newNode;
-        size++;
-        modCount++;
+void linkLast(E e) {
+    final Node<E> l = last;
+    final Node<E> newNode = new Node<>(l, e, null);
+    last = newNode;
+    if (l == null)
+        first = newNode;
+    else
+        l.next = newNode;
+    size++;
+    modCount++;
 ```
 
 
