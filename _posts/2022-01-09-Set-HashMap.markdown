@@ -130,38 +130,40 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
         n = (tab = resize()).length;
     // resize() 执行完毕后，第一次扩容到16个空间
     if ((p = tab[i = (n - 1) & hash]) == null)
-        //根据key得到的hash值，去计算该key应该存放到table表的哪个索引位置
-        //并把这个位置的对象赋值给p
-        //再去判断这个值是是否为null,如果为null，表示没有任何数据，创建一个Node
-        //直接放进去  放入table[i]
-        tab[i] = newNode(hash, key, value, null);//key:java  value=PRESENT
+    //根据key得到的hash值，去计算该key应该存放到table表的哪个索引位置
+    //并把这个位置的对象赋值给p
+    //再去判断这个值是是否为null,如果为null，表示没有任何数据，创建一个Node
+    //直接放进去  放入table[i]
+        tab[i] = newNode(hash, key, value, null);
+    //key:java  value=PRESENT
     
     else {
         Node<K,V> e; K k;// 需要的时候再临时创建，辅助变量
         if (p.hash == hash &&
-            //以下两个满足其一即可进入if：
-            //如果当前索引位置对应的链表的第一个元素hash值和准备添加的key的hash值一样，
-            //而且准备加入的key和p指向的的Node节点的key的hash值一样；
-            //或者::准备加入的key和p指向的的Node节点的key本身是一个对象，
-            //而且p指向的的Node节点的key和准备加入的key的equals比较后相同。（这是比较对象的）
+//以下两个满足其一即可进入if：
+//如果当前索引位置对应的链表的第一个元素hash值和准备添加的key的hash值一样，
+//而且准备加入的key和p指向的的Node节点的key的hash值一样；
+//或者::准备加入的key和p指向的的Node节点的key本身是一个对象，
+//而且p指向的的Node节点的key和准备加入的key的equals比较后相同。（这是比较对象的）
             ((k = p.key) == key || (key != null && key.equals(k))))
             e = p;
-        //如果无法满足进入前者，那么我们判断是不是一棵红黑树，
-        //如果是的话，进入红黑树的比较方法 putTreeVal() 该方法复杂暂不展开
+//如果无法满足进入前者，那么我们判断是不是一棵红黑树，
+//如果是的话，进入红黑树的比较方法 putTreeVal() 该方法复杂暂不展开
         else if (p instanceof TreeNode)
             e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
         else {
             for (int binCount = 0; ; ++binCount) {//死循环  除非break
-                //这是个链表啊，那就执行循环比较，直到有对象和链表里的key相同的话，直接退出
-                //执行完毕，若都没有相同的，就将他放在链表最后
-                if ((e = p.next) == null) {//若为空即这个节点没有元素，将其放在第一个
+        //这是个链表啊，那就执行循环比较，直到有对象和链表里的key相同的话，直接退出
+        //执行完毕，若都没有相同的，就将他放在链表最后
+                if ((e = p.next) == null) {
+                    //若为空即这个节点没有元素，将其放在第一个
                     p.next = newNode(hash, key, value, null);
-                    //这里显示 执行完毕，若都没有相同的，就将他放在链表最后，立即判断：
+     //这里显示 执行完毕，若都没有相同的，就将他放在链表最后，立即判断：
                     if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
-                        //是否大于等于7，即是否为8个元素了，达到的话调用红黑树
-                        //treeifyBin(tab, hash);将其转为红黑树，在进行树化时
-                        //如果长度大于8小于64时，还不会立刻树化，先尝试去扩容表来解决
-                        //如果大于64的话就去变成红黑树
+    //是否大于等于7，即是否为8个元素了，达到的话调用红黑树
+    //treeifyBin(tab, hash);将其转为红黑树，在进行树化时
+    //如果长度大于8小于64时，还不会立刻树化，先尝试去扩容表来解决
+    //如果大于64的话就去变成红黑树
                         treeifyBin(tab, hash);
                     break;
                 }
@@ -169,10 +171,10 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                     ((k = e.key) == key || (key != null && key.equals(k))))
                     break;
                 p = e;
-                //我们判断e和我们要添加的不相同，就将e赋值给p,让e=p.next,p的下一个是否为空，
-                //如果不为空，我们判断他和我们的是否相同，不相同继续循环，一直到：
-                //e成为了最后一个，那么e赋值给p,p的下一个没有了，为空，则终于进入if语句，
-                //新建一个 并且赋值给p.next，结束。
+//我们判断e和我们要添加的不相同，就将e赋值给p,让e=p.next,p的下一个是否为空，
+//如果不为空，我们判断他和我们的是否相同，不相同继续循环，一直到：
+//e成为了最后一个，那么e赋值给p,p的下一个没有了，为空，则终于进入if语句，
+//新建一个 并且赋值给p.next，结束。
             }
         }
         if (e != null) { // existing mapping for key
