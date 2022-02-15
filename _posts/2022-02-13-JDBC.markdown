@@ -144,3 +144,55 @@ connect.close();
 2. 调用 executeQuery()  ，返回  ResultSet  对象
 3. 调用  executeUpdate()  : 执行更新，包括增、删、改   返回int类型  表示收到影响的函数 多少行 0 表示失败
 
+
+
+## 事务
+
+1. JDBC程序中当一个Connection对象创建时，默认情况下是自动提交事务：每次执行一个sql语句时，如果执行成功，就会向数据库自动提交，而不能回滚
+2. JDBC程序中为了让多个sql语句作为一个整体执行，需要使用事务
+3. **调用Connection的setAutoCommit(false) 可以取消自动提交事务**
+4. 在所有的sql语句都成功执行后，调用commit() 方法提交事务
+5. 在其中的某个操作失败或者出现异常时，调用rollback()  方法回滚事务
+
+举例如下：
+
+```java
+public void useTransaction() {
+    //操作转账的业务
+    //1. 得到连接
+        
+    Connection connection = null;
+    
+    //2. 组织一个sql
+    String sql = "update account set balance = balance - 100 where id = 1";
+    String sql2 = "update account set balance = balance + 100 where id = 2";
+    PreparedStatement preparedStatement = null;
+    
+    //3. 创建PreparedStatement 对象
+    try {
+        connection = JDBCUtils.getConnection(); // 在默认情况下，connection 是默认自动提交
+        //将connection 设置为不自动提交
+        connection.setAutoCommit(false); //开启了事务
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.executeUpdate(); // 执行第 1 条sql
+        //int i = 1 / 0; //抛出异常
+        preparedStatement = connection.prepareStatement(sql2);
+        preparedStatement.executeUpdate(); // 执行第 2 条sql
+        //这里提交事务
+        connection.commit();
+    } catch (SQLException e) {
+        //这里我们可以进行回滚，即撤销执行的SQL
+        //默认回滚到事务开始的状态.
+        System.out.println("执行发生了异常，撤销执行的sql");
+        try {
+            connection.rollback();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        e.printStackTrace();
+    } finally {
+        //关闭资源
+        JDBCUtils.close(null, preparedStatement, connection);
+    }
+```
+
