@@ -281,9 +281,9 @@ while (matcher.find()) {
 
 `(?:pattern)`   **匹配pattern但不捕获该匹配的子表达式**，即它是一个非捕获匹配，不存储供以后使用的匹配，对于用“or”字符（|） 组合模式部件的情况很有用。例如：`industr(?:y|ies)`  比  `industry|industries` 更好
 
-`(?=pattern)`   它是一个非捕获匹配，例如 windows(?=95|98|NT|2000) 匹配windows 2000中的windows 不匹配windows 3.1中的windows
+`(?=pattern)`   它是一个非捕获匹配，例如 `windows(?=95|98|NT|2000)` 匹配windows 2000中的windows 不匹配windows 3.1中的windows
 
- `(?!pattern)`     该表达式匹配不处于匹配pattern的字符串的起始点的搜索字符串，它是一个非捕获匹配，例如例如 windows(?!95|98|NT|2000)    不匹配windows 2000中的windows     匹配windows 3.1中的windows
+ `(?!pattern)`     该表达式匹配不处于匹配pattern的字符串的起始点的搜索字符串，它是一个非捕获匹配，例如例如 `windows(?!95|98|NT|2000)`    不匹配windows 2000中的windows     匹配windows 3.1中的windows
 
 
 
