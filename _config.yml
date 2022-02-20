@@ -15,8 +15,8 @@ author: cuilongyang
 
 navbar-links:
   cuilongyang's home: "https://cuilongyang.com"  
-  Index Tags: "tags"
-  About Me: "aboutme"
+  Tags Index: "tags"
+  resume: "aboutme"
 
 # --- Logo --- #
 
@@ -90,7 +90,7 @@ feed_show_excerpt: false
 feed_show_tags: false
 
 # Add a search button to the navbar
-post_search: false
+post_search: true
 
 # The keywords to associate with your website, for SEO purposes
 #keywords: "my,list,of,keywords"
