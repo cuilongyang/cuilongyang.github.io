@@ -28,7 +28,7 @@ MVC三层架构： Model  View  Controller 模型，视图，控制器
 
 
 
-![](assets\img\blogpic\MVC.png)
+![](\assets\img\blogpic\MVC.png)
 
 
 
