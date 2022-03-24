@@ -9,6 +9,8 @@ date: 2022-03-24 22:56:26 +0800
 tags: [Java,Ajax]
 ---
 
+
+
 **AJAX：Asynchronous JavaScript and XML （异步的JavaScript和XML）**
 
 - 传统的网页（不使用Ajax）想要更新内容或者提交一个表单，都需要重新加载整个网页
@@ -39,8 +41,7 @@ Jquery Ajax本质就是XMLHttpRequest，对他进行封装，方便调用，
     </script>
 </head>
 <body>
-<script type="text/javascript">
-    
+<script type="text/javascript">    
     function a1() {
         /**
          * url:待载入页面的URL地址，Json
@@ -59,15 +60,11 @@ Jquery Ajax本质就是XMLHttpRequest，对他进行封装，方便调用，
         });
     }
 </script>
-
 用户名：
 <input type="text" id="txtName" onblur="a1()">
-
 </body>
 </html>
 ```
-
-
 
 ## Ajax总结：
 
