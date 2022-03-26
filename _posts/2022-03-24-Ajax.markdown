@@ -5,11 +5,9 @@ subtitle:
 cover-img: 
 thumbnail-img:
 share-img: 
-date: 2022-03-24 22:56:26 +0800
-tags: [Java,Ajax]
+date: 2022-03-24 22:10:26 +0800
+tags: [Java, Ajax]
 ---
-
-
 
 **AJAX：Asynchronous JavaScript and XML （异步的JavaScript和XML）**
 
@@ -20,7 +18,7 @@ tags: [Java,Ajax]
 
 
 
-**Ajax可以实现：**
+#### **Ajax可以实现：**
 
 - 注册时，输入用户名自动检测用户是否已经存在
 - 登录时，提示用户名密码错误
