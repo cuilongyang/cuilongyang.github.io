@@ -6,7 +6,7 @@ cover-img:
 thumbnail-img:
 share-img: 
 date: 2022-03-27 22:56:26 +0800
-tags: [Java,Spring]
+tags: [Java, Spring]
 ---
 
 ## Spring开发步骤
@@ -178,6 +178,246 @@ public class DynamicFactoryBean {
    <bean id="userService" class="com.belle.service.impl.UserServiceImpl" p:userDao-
    ref="userDao"/>
    ```
+
+
+
+## 1.4 注入数据的三种数据类型
+
+- 普通数据类型
+
+  ```java
+  public class UserDaoImpl implements UserDao {
+      private String company;
+      private int age;
+      public void setCompany(String company) {
+          this.company = company;
+      }
+      public void setAge(int age) {
+          this.age = age;
+      }
+      public void save() {
+          System.out.println(company+"==="+age);
+          System.out.println("UserDao save method running....");
+      }
+  }
+  ```
+
+  ```xml
+  <bean id="userDao" class="com.belle.dao.impl.UserDaoImpl">
+      <property name="company" value="belle"></property>
+      <property name="age" value="15"></property>
+  </bean>
+  ```
+
+  
+
+  
+
+- 集合数据类型（List<String>）的注入
+
+  ```java
+  public class UserDaoImpl implements UserDao {
+      private List<String> strList;
+      public void setStrList(List<String> strList) {
+          this.strList = strList;
+      }
+      public void save() {
+          System.out.println(strList);
+          System.out.println("UserDao save method running....");
+      }
+  }
+  ```
+
+  ```xml
+  <bean id="userDao" class="com.belle.dao.impl.UserDaoImpl">
+      <property name="strList">
+          <list>
+              <value>aaa</value>
+              <value>bbb</value>
+              <value>ccc</value>
+          </list>
+      </property>
+  </bean>
+  ```
+
+  
+
+- 集合数据类型（List<User>）的注入
+
+  ```java
+  public class UserDaoImpl implements UserDao {
+      private List<User> userList;
+      public void setUserList(List<User> userList) {
+          this.userList = userList;
+      }
+      public void save() {
+          System.out.println(userList);
+          System.out.println("UserDao save method running....");
+      }
+  }
+  ```
+
+  ```xml
+  <bean id="u1" class="com.belle.domain.User"/>
+  <bean id="u2" class="com.belle.domain.User"/>
+  <bean id="userDao" class="com.belle.dao.impl.UserDaoImpl">
+      <property name="userList">
+          <list>
+              <bean class="com.belle.domain.User"/>
+              <bean class="com.belle.domain.User"/>
+              <ref bean="u1"/>
+              <ref bean="u2"/>
+          </list>
+      </property>
+  </bean>
+  ```
+
+
+
+- 集合数据类型（Map<String,User>）的注入
+
+  ```java
+  public class UserDaoImpl implements UserDao {
+      private Map<String,User> userMap;
+      public void setUserMap(Map<String, User> userMap) {
+          this.userMap = userMap;
+      }
+      public void save() {
+          System.out.println(userMap);
+          System.out.println("UserDao save method running....");
+      }
+  }
+  ```
+
+  ```xml
+  <bean id="u1" class="com.belle.domain.User"/>
+  <bean id="u2" class="com.belle.domain.User"/>
+  <bean id="userDao" class="com.belle.dao.impl.UserDaoImpl">
+      <property name="userMap">
+          <map>
+              <entry key="user1" value-ref="u1"/>
+              <entry key="user2" value-ref="u2"/>
+          </map>
+      </property>
+  </bean>
+  ```
+
+  
+
+- 集合数据类型（Properties）的注入
+
+  ```java
+  public class UserDaoImpl implements UserDao {
+      private Properties properties;
+      public void setProperties(Properties properties) {
+          this.properties = properties;
+      }
+      public void save() {
+          System.out.println(properties);
+          System.out.println("UserDao save method running....");
+      }
+  }
+  ```
+
+  ```xml
+  <bean id="userDao" class="com.belle.dao.impl.UserDaoImpl">
+      <property name="properties">
+          <props>
+              <prop key="p1">aaa</prop>
+              <prop key="p2">bbb</prop>
+              <prop key="p3">ccc</prop>
+          </props>
+      </property>
+  </bean>
+  ```
+
+
+
+## 1.5 引入其他配置文件（分模块开发）
+
+实际开发中，Spring的配置内容非常多，这就导致Spring配置很繁杂且体积很大，所以，可以将部分配置拆解到其
+
+他配置文件中，而在Spring主配置文件通过import标签进行加载
+
+```xml
+<import resource="applicationContext-xxx.xml"/>
+```
+
+
+
+### Spring的重点配置
+
+```xml
+<bean>标签
+	id属性:在容器中Bean实例的唯一标识，不允许重复
+	class属性:要实例化的Bean的全限定名
+	scope属性:Bean的作用范围，常用是Singleton(默认)和prototype
+<property>标签：属性注入
+	name属性：属性名称
+	value属性：注入的普通属性值
+	ref属性：注入的对象引用值
+	<list>标签
+	<map>标签
+	<properties>标签
+<constructor-arg>标签
+<import>标签:导入其他的Spring的分文件
+```
+
+
+
+## 1.6 ApplicationContext的实现类
+
+#### **1）ClassPathXmlApplicationContext**
+
+它是从类的根路径下加载配置文件推荐使用这种
+
+#### 2）FileSystemXmlApplicationContext
+
+它是从磁盘路径上加载配置文件，配置文件可以在磁盘的任意位置。
+
+#### 3）AnnotationConfigApplicationContext
+
+当使用注解配置容器对象时，需要使用此类来创建spring 容器。它用来读取注解。
+
+
+
+- #### getBean()方法使用
+
+```java
+public Object getBean(String name) throws BeansException {
+    assertBeanFactoryActive();
+    return getBeanFactory().getBean(name);
+}
+public <T> T getBean(Class<T> requiredType) throws BeansException {
+    assertBeanFactoryActive();
+    return getBeanFactory().getBean(requiredType);
+}
+```
+
+
+
+其中，当参数的数据类型是字符串时，表示根据Bean的id从容器中获得Bean实例，返回是Object，需要强转。
+
+当参数的数据类型是Class类型时，表示根据类型从容器中匹配Bean实例，当容器中相同类型的Bean有多个时，则
+
+此方法会报错。
+
+```java
+ApplicationContext applicationContext = new
+ClassPathXmlApplicationContext("applicationContext.xml");
+UserService userService1 = (UserService) applicationContext.getBean("userService");
+UserService userService2 = applicationContext.getBean(UserService.class);
+```
+
+
+
+#### Spring的重点API
+
+```java
+ApplicationContext app = newClasspathXmlApplicationContext("xml文件");
+app.getBean("id");
+app.getBean(Class);
+```
 
 
 
