@@ -119,7 +119,8 @@ public ModelAndView hi(ModelAndView modelAndView){
   }
   ```
 
-  
+
+#### 2.2返回对象或集合
 
   在异步项目中，客户端与服务器端往往要进行json格式字符串交互，此时我们可以手动拼接json字符串返回。
 
@@ -165,7 +166,118 @@ public ModelAndView hi(ModelAndView modelAndView){
   }
   ```
 
+  **MVC注解驱动**
+
+  以上的办法需要引入json转换工具，我们可以让SpringMVC来做这些工作
+
+  在方法上添加@ResponseBody就可以返回json格式的字符串，但是这样配置比较麻烦，配置
+
+  代码比较多，因此，我们可以使用mvc的注解驱动代替上述配置。
+
+  ```xml
+  <!--    mvc注解驱动-->
+  <mvc:annotation-driven/>
+  ```
+
+  
+
+## SpringMVC获得请求数据
+
+客户端请求参数的格式是：`name=value&name=value… …`
+
+服务器端要获得请求的参数，有时还需要进行数据的封装，SpringMVC可以接收如下类型的参数：
+
+- 基本类型参数
+- POJO类型参数
+- 数组类型参数
+- 集合类型参数
+
+### 1.获得基本类型参数
+
+Controller中的业务方法的参数名称要与请求参数的name一致，参数值会自动映射匹配。
+
+```java
+@RequestMapping(value = "/eleven")
+@ResponseBody
+public void eleven(String username, int age) throws IOException {
+    System.out.println(username);
+    System.out.println(age);
+}
+```
+
+浏览器输入：`http://localhost:8080/eleven?username=belle&age=18`
+
+控制台会输出 `belle  18`
+
+### 2.获得POJO类型参数
+
+Controller中的业务方法的POJO参数的属性名与请求参数的name一致，参数值会自动映射匹配。
+
+```java
+@RequestMapping(value = "/twelve")
+@ResponseBody
+public void twelve(User user) throws IOException {
+    System.out.println(user);
+}
+```
+
+浏览器输入：`http://localhost:8080/twelve?username=belle&age=18`
+
+控制台输出：`User{username='belle', age=18}`
+
+### 3.获得数组类型参数
+
+Controller中的业务方法数组名称与请求参数的name一致，参数值会自动映射匹配。
+
+```java
+@RequestMapping(value = "/thirteen")
+@ResponseBody
+public void thirteen(String[] strings) throws IOException {
+    System.out.println(Arrays.asList(strings));
+}
+```
+
+浏览器输入：`http://localhost:8080/thirteen?strings=111&strings=222&strings=333`
+
+控制台输出：`[111, 222, 333]`
+
+### 4.获得集合类型参数
+
+获得集合参数时，要将集合参数包装到一个POJO中才可以。
+
+```java
+@RequestMapping(value = "/fourteen")
+@ResponseBody
+public void fourteen(VO vo) throws IOException {
+    System.out.println(vo);
+}
+```
+
+以上的VO对象为：
+
+```java
+public class VO {
+    private List<User> userList;
+```
+
+```jsp
+<body>
+    <form action="${pageContext.request.contextPath}/fourteen" method="post">
+        <%--  表明时第几个User对象的username age--%>
+        <input type="text" name="userList[0].username"><br/>
+        <input type="text" name="userList[0].age"><br/>
+        <input type="text" name="userList[1].username"><br/>
+        <input type="text" name="userList[1].age"><br/>
+        <input type="submit" value="提交">
+    </form>
+</body>
+```
+
+以上列表输入后：控制台打印：
+
+`VO{userList=[User{username='belle', age=12}, User{username='clyde', age=55}]}`
 
 
-- 返回对象或集合
+
+
 
