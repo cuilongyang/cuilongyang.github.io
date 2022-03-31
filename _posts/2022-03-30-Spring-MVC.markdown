@@ -504,3 +504,117 @@ public void twenty(@CookieValue(value ="JSESSIONID" ) String jsessionId) throws 
 
 控制台输出：     `2B286AE5D3F023BAC5B6419FB99D35B3`
 
+### 11.文件上传
+
+#### 1.文件上传客户端三要素
+
+- 表单项**type=“file”**
+- 表单的提交方式是**post**
+- 表单的enctype属性是多部分表单形式，及**enctype=“multipart/form-data”**
+
+```jsp
+<body>
+    <form action="${pageContext.request.contextPath}/twentyone" method="post" enctype="multipart/form-data">
+        名称：<input type="text" name="username">
+        文件：<input type="file" name="upload">
+        <input type="submit" value="提交">
+    </form>
+</body>
+```
+
+
+
+#### 2.文件上传原理
+
+- 当form表单修改为多部分表单时，request.getParameter()将失效。
+
+- enctype=“application/x-www-form-urlencoded”时，form表单的正文内容格式是
+
+  **key=value&key=value&key=value**
+
+- 当form表单的enctype取值为Mutilpart/form-data时，请求正文内容就变成多部分形式：获取全部的数据，包括
+
+  姓名和上传文件的全部内容
+
+### 12.单文件上传步骤
+
+
+
+1. 导入fileupload和io坐标
+
+   ```xml
+   <dependency>
+       <groupId>commons-fileupload</groupId>
+       <artifactId>commons-fileupload</artifactId>
+       <version>1.2.2</version>
+   </dependency>
+   <dependency>
+       <groupId>commons-io</groupId>
+       <artifactId>commons-io</artifactId>
+       <version>2.4</version>
+   </dependency>
+   ```
+
+   
+
+2. 配置文件上传解析器
+
+   ```xml
+   <!--    配置文件上传解析器-->
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+       <!--上传文件总大小-->
+       <property name="maxUploadSize" value="5242800"/>
+       <!--上传单个文件的大小-->
+       <property name="maxUploadSizePerFile" value="5242800"/>
+       <!--上传文件的编码类型-->
+       <property name="defaultEncoding" value="UTF-8"/>
+   </bean>
+   ```
+
+   
+
+3. 编写文件上传代码
+
+   ```java
+   @RequestMapping(value = "/twentyone")
+   @ResponseBody
+   public void twentyone(String username, MultipartFile uploadFile) throws IOException {
+       System.out.println(username);
+       // 获得上传文件的名称
+       String originalFilename = uploadFile.getOriginalFilename();
+       uploadFile.transferTo(new File("E:\\project\\"+originalFilename));
+   }
+   ```
+
+### 13.多文件上传实现
+
+多文件上传，将页面修改为多个文件上传项，将方法参数`MultipartFile`类型修改为`MultipartFile[]`即可
+
+```jsp
+<body>
+    <form action="${pageContext.request.contextPath}/twentyone" method="post" enctype="multipart/form-data">
+        名称：<input type="text" name="username">
+        文件1：<input type="file" name="uploadFiles">
+        文件2：<input type="file" name="uploadFiles">
+        <input type="submit" value="提交">
+    </form>
+</body>
+```
+
+```java
+@RequestMapping(value = "/twentyone")
+@ResponseBody
+public void twentyone(String username, MultipartFile[] uploadFiles) throws IOException {
+    System.out.println(username);
+    // 获得上传文件的名称
+    for ( MultipartFile uploadFile:uploadFiles) {
+        String originalFilename = uploadFile.getOriginalFilename();
+        uploadFile.transferTo(new File("E:\\project\\"+originalFilename));
+    }
+}
+```
+
+
+
+
+
