@@ -277,7 +277,230 @@ public class VO {
 
 `VO{userList=[User{username='belle', age=12}, User{username='clyde', age=55}]}`
 
+当使用ajax提交时，可以指定contentType为json形式，那么在方法参数位置使用@RequestBody可以直接接收集合
+
+数据而无需使用POJO进行包装。
+
+```jsp
+<title>Title</title>
+<script src="${pageContext.request.contextPath}/js/jquery-3.6.0.js"></script>
+<script>
+    var userList = new Array();
+    userList.push({username:"belle",age:18});
+    userList.push({username:"clyde",age:19});
+
+    $.ajax({
+        type:"POST",
+        url:"${pageContext.request.contextPath}/fiveteen",
+        data:JSON.stringify(userList),
+        contentType:"application/json;charset=utf-8"
+    })
+</script>
+```
+
+```java
+@RequestMapping(value = "/fiveteen")
+@ResponseBody
+public void fiveteen(@RequestBody List<User>userList) throws IOException {
+    System.out.println(userList);
+}
+```
+
+控制台输出：`[User{username='belle', age=18}, User{username='clyde', age=19}]`
+
+此处存在jquery文件无法找到的错误，在springmvc.xml中添加如下代码：
+
+`<mvc:resources mapping="/js/**" location="/js/"/>`或者：
+
+`<mvc:default-servlet-handler/>` 推荐！
+
+### 5.请求数据乱码问题
+
+当post请求时，数据会出现乱码，我们可以设置一个过滤器来进行编码的过滤。
+
+```xml
+<!--    配置全局过滤-->
+<filter>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+</filter>
+<filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
+
+### 6.参数绑定注解@requestParam
+
+当请求的参数名称与Controller的业务方法参数名称不一致时，就需要通过@RequestParam注解显示的绑定
+
+```java
+@RequestMapping(value = "/sixteen")
+@ResponseBody
+public void sixteen(@RequestParam(value = "name") String username) throws IOException {
+    System.out.println(username);
+}
+```
+
+注解@RequestParam还有如下参数可以使用：
+
+- value：与请求参数名称
+- required：此在指定的请求参数是否必须包括，默认是true，提交时如果没有此参数则报错
+- defaultValue：当没有指定请求参数时，则使用指定的默认值赋值
+
+```java
+@RequestMapping(value = "/sixteen")
+@ResponseBody
+public void sixteen(@RequestParam(value = "name",required = false,defaultValue = "default") String username) throws IOException {
+    System.out.println(username);
+}
+```
 
 
 
+### 7.获得Restful风格的参数
+
+Restful是一种软件**架构风格、设计风格**，而不是标准，只是提供了一组设计原则和约束条件。主要用于客户端和
+
+服务器交互类的软件，基于这个风格设计的软件可以更简洁，更有层次，更易于实现缓存机制等。
+
+Restful风格的请求是使用“url+请求方式”表示一次请求目的的，HTTP 协议里面四个表示操作方式的动词如下
+
+- GET：用于获取资源
+- POST：用于新建资源
+- PUT：用于更新资源
+- DELETE：用于删除资源
+
+通过这种方法可以获取地址内部的参数：`@PathVariable`
+
+```java
+// localhost:8080/seventeen/zhangsan
+@RequestMapping(value = "/seventeen/{username}")
+@ResponseBody
+public void seventeen(@PathVariable(value = "username") String username) throws IOException {
+    System.out.println(username);
+}
+```
+
+控制台输出：`zhangsan`   
+
+### 8.自定义类型转换器
+
+- SpringMVC默认已经提供了一些常用的类型转换器，例如客户端提交的字符串转换成int型进行参数设置。
+- 但是不是所有的数据类型都提供了转换器，没有提供的就需要自定义转换器，例如：日期类型的数据就需要自定义转换器。
+
+#### 自定义类型转换器的开发步骤：
+
+1. 定义转换器类实现Converter接口
+2. 在配置文件中声明转换器
+3. 在`<annotation-driven>`中引用转换器
+
+
+
+```java
+public class DataConverter implements Converter<String,Date> {
+    public Date convert(String dateStr)  {
+        // 将日期的字符串转换为真正的对象 并返回
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = format.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+```
+
+进行声明转换器设置：
+
+```xml
+<!--    声明转换器-->
+<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+    <property name="converters">
+        <list>
+            <bean class="com.belle.converter.DataConverter"/>
+        </list>
+    </property>
+</bean>
+```
+
+```xml
+<!--    mvc注解驱动-->
+<mvc:annotation-driven conversion-service="conversionService"/>
+```
+
+
+
+### 9.获得Servlet相关API
+
+SpringMVC支持使用原始ServletAPI对象作为控制器方法的参数进行注入，常用的对象如下：
+
+- HttpServletRequest
+- HttpServletResponse
+- HttpSession
+
+```java
+@RequestMapping(value = "/nineteen")
+@ResponseBody
+public void nineteen(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
+    System.out.println(request);
+    System.out.println(response);
+    System.out.println(session);
+}
+```
+
+控制台输出：
+
+`org.apache.catalina.connector.RequestFacade@2395b94c`
+`org.apache.catalina.connector.ResponseFacade@4db3c169`
+`org.apache.catalina.session.StandardSessionFacade@58cdedc7`
+
+### 10.获得请求头
+
+#### 1. @RequestHeader
+
+使用@RequestHeader可以获得请求头信息，相当于web阶段学习的**request.getHeader(name)**
+
+@RequestHeader注解的属性如下：
+
+- value：请求头的名称
+- required：是否必须携带此请求头
+
+
+
+```java
+@RequestMapping(value = "/twenty")
+@ResponseBody
+public void twenty(@RequestHeader(value = "User-Agent", required = false) String user_agent) throws IOException {
+    System.out.println(user_agent);
+}
+```
+
+控制台输出：
+
+`Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36`
+
+#### 2.@CookieValue
+
+使用@CookieValue可以获得指定Cookie的值
+
+@CookieValue注解的属性如下：
+
+- value：指定cookie的名称
+- required：是否必须携带此cookie
+
+```java
+@RequestMapping(value = "/twenty")
+@ResponseBody
+public void twenty(@CookieValue(value ="JSESSIONID" ) String jsessionId) throws IOException {
+    System.out.println(jsessionId);
+}
+```
+
+控制台输出：     `2B286AE5D3F023BAC5B6419FB99D35B3`
 
