@@ -1,0 +1,176 @@
+---
+layout: post
+title:  " Mybatis"
+subtitle: 
+cover-img: 
+thumbnail-img:
+share-img: 
+date: 2022-04-06 22:56:26 +0800
+tags: [Java, Mybatis]
+---
+
+# Mybatis简介：
+
+原始jdbc开发存在的问题如下：
+
+1. 数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能。
+2. sql语句在代码中硬编码，造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。
+3. 查询操作时，需要手动将结果集中的数据手动封装到实体中。插入操作时，需要手动将实体的数据设置到sql语句的占位符位置。
+
+应对上述问题给出的解决方案：
+
+1. 使用数据库连接池初始化连接资源   
+2. 将sql语句抽取到xml配置文件中   **解耦合**
+3. **使用反射、内省等底层技术，自动将实体与表进行属性与字段的自动映射**
+
+### MyBatis解决了这个问题!!!
+
+- mybatis是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。
+- mybatis通过xml或注解的方式将要执行的各种statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。
+- 最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM思想解决了实体和数据库映射的问题，对jdbc进行了封装，屏蔽了jdbcAPI底层访问细节，使我们不用与jdbcapi打交道，就可以完成对数据库的持久化操作。
+
+
+
+## MyBatis快速入门：
+
+1. 导入MyBatis的坐标和其他相关坐标
+
+   ```xml
+   <dependencies>
+       <dependency>
+       <groupId>mysql</groupId>
+       <artifactId>mysql-connector-java</artifactId>
+       <version>5.1.32</version>
+       </dependency>
+       <dependency>
+       <groupId>org.mybatis</groupId>
+       <artifactId>mybatis</artifactId>
+       <version>3.4.6</version>
+       </dependency>
+       <dependency>
+       <groupId>junit</groupId>
+       <artifactId>junit</artifactId>
+       <version>4.12</version>
+       </dependency>
+       <dependency>
+       <groupId>log4j</groupId>
+       <artifactId>log4j</artifactId>
+       <version>1.2.17</version>
+       </dependency>
+       </dependencies>
+   ```
+
+2. 创建user数据表
+
+3. 编写User实体
+
+   ```java
+   public class User {
+   
+       private int id;
+       private String username;
+       private String password;
+       // getter setter tostring 等方法
+   }
+   ```
+
+4. 编写UserMapper映射文件
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8" ?>
+   <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   
+   <!-- 根标签  namespace命名空间-->
+   <mapper namespace="userMapper">
+   
+       <!-- 查询操作 -->
+       <select id="findAll" resultType="com.belle.domain.User">
+           select * from user
+       </select>
+   
+       <!-- 插入操作 -->
+       <insert id="save" parameterType="com.belle.domain.User">
+           insert into user values(#{id},#{username},#{password})
+       </insert>
+   
+   </mapper>
+   ```
+
+5. 编写MyBatis核心文件
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8" ?>
+   <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+   <configuration>
+   
+   <!--     数据源的环境 -->
+       <environments default="development">
+           <environment id="development">
+               <transactionManager type="JDBC"></transactionManager>
+               <dataSource type="POOLED">
+                   <property name="driver" value="com.mysql.jdbc.Driver"/>
+                   <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+                   <property name="username" value="root"/>
+                   <property name="password" value="cly"/>
+               </dataSource>
+           </environment>
+       </environments>
+   
+   <!--     加载映射文件 -->
+       <mappers>
+           <mapper resource="com/belle/mapper/UserMapper.xml"></mapper>
+       </mappers>
+   </configuration>
+   ```
+
+6. 编写测试代码  查询操作
+
+   ```java
+   @Test
+   public void test1() throws IOException {
+       //    获得核心配置文件
+       InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
+       //    获得Session工厂对象
+       SqlSessionFactory sqlSessionFactory = new
+           SqlSessionFactoryBuilder().build(resourceAsStream);
+       //    获得Session会话对象
+       SqlSession sqlSession = sqlSessionFactory.openSession();
+       //    执行操作  参数为 namespace + 参数id
+       List<User> userList = sqlSession.selectList("userMapper.findAll");
+       //    打印数据
+       System.out.println(userList);
+       //    释放资源
+       sqlSession.close();
+   }
+   ```
+
+   插入操作需要提交事务！！
+
+   ```java
+   @Test
+   public void test2() throws IOException {
+       //模拟user对象
+       User user = new User();
+       user.setUsername("belle");
+       user.setPassword("abc");
+   
+       //    获得核心配置文件
+       InputStream resourceAsStream = Resources.getResourceAsStream("sqlMapConfig.xml");
+       //    获得Session工厂对象
+       SqlSessionFactory sqlSessionFactory = new 
+           SqlSessionFactoryBuilder().build(resourceAsStream);
+       //    获得Session会话对象
+       SqlSession sqlSession = sqlSessionFactory.openSession();
+       //    执行操作  参数为 namespace + 参数id  添加对象
+       sqlSession.insert("userMapper.save",user);
+       //    提交事务
+       sqlSession.commit();
+       //    释放资源
+       sqlSession.close();
+   }
+   ```
+
+   
+
