@@ -16,7 +16,7 @@ author: cuilongyang
 navbar-links:
   cuilongyang's home: "https://cuilongyang.com"  
   Tags Index: "tags"
-  resume: "aboutme"
+  resume: "Resume"
 
 # --- Logo --- #
 
@@ -214,7 +214,7 @@ timezone: "America/Toronto"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
-paginate: 50
+paginate: 10
 
 kramdown:
   input: GFM
