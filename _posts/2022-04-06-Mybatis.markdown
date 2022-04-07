@@ -5,11 +5,9 @@ subtitle:
 cover-img: 
 thumbnail-img:
 share-img: 
-date: 2022-04-06 22:56:26 +0800
+date: 2022-04-06 22:10:26 +0800
 tags: [Java, Mybatis]
 ---
-
-# Mybatis简介：
 
 原始jdbc开发存在的问题如下：
 
@@ -28,8 +26,6 @@ tags: [Java, Mybatis]
 - mybatis是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。
 - mybatis通过xml或注解的方式将要执行的各种statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。
 - 最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM思想解决了实体和数据库映射的问题，对jdbc进行了封装，屏蔽了jdbcAPI底层访问细节，使我们不用与jdbcapi打交道，就可以完成对数据库的持久化操作。
-
-
 
 ## MyBatis快速入门：
 
