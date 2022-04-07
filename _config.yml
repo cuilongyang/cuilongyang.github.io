@@ -16,7 +16,7 @@ author: cuilongyang
 navbar-links:
   cuilongyang's home: "https://cuilongyang.com"  
   Tags Index: "tags"
-  resume: "Resume"
+  resume: "resume"
 
 # --- Logo --- #
 
@@ -37,11 +37,11 @@ title-img: "/assets/img/avatar-icon.png"
 # Select the social network links that you want to show in the footer.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "cuilongyang@gmail.com"
+  # email: "cuilongyang@gmail.com"
   # rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  instagram: longyang.cui
-  github: cuilongyang
-  twitter: cuilongyang
+  # instagram: longyang.cui
+  # github: cuilongyang
+  # twitter: cuilongyang
   # patreon: DeanAttali
   # youtube: c/daattali
 #  medium: yourname
