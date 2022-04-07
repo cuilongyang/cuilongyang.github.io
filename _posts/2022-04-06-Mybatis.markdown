@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " Mybatis"
+title:  " Mybatis "
 subtitle: 
 cover-img: 
 thumbnail-img:
