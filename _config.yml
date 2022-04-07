@@ -14,9 +14,10 @@ author: cuilongyang
 # --- List of links in the navigation bar --- #
 
 navbar-links:
+  resume: "resume"
   cuilongyang's home: "https://cuilongyang.com"  
   Tags Index: "tags"
-  resume: "resume"
+
 
 # --- Logo --- #
 
