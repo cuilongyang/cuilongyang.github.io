@@ -6,7 +6,7 @@ cover-img:
 thumbnail-img:
 share-img: 
 date: 2022-04-11 20:22:26 +0800
-tags: [Java, 数据结构与算法]
+tags: [Java, DataStructures]
 ---
 
 # 数据结构
