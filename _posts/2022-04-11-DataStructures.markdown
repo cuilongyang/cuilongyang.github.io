@@ -94,7 +94,8 @@ public class SparseArray {
 ```java
 public class CricleArrayQueueDemo {
     public static void main(String[] args) {
-        CricleArrayQueue arrayQueue = new CricleArrayQueue(3);
+        CricleArrayQueue arrayQueue = 
+            new CricleArrayQueue(3);
         char key = ' '; // 接收用户输入
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
@@ -120,16 +121,20 @@ public class CricleArrayQueueDemo {
                     break;
                 case 'g':
                     try {
-                        int queue = arrayQueue.getQueue();
-                        System.out.println("取出的数据为：" + queue);
+                        int queue = 
+                            arrayQueue.getQueue();
+                        System.out.println(
+                            "取出的数据为：" + queue);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 case 'h':
                     try {
-                        int headQueue = arrayQueue.headQueue();
-                        System.out.printf("队列头的数据时%d\n", headQueue);
+                        int headQueue = 
+                            arrayQueue.headQueue();
+                        System.out.printf(
+                            "队列头的数据时%d\n", headQueue);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -186,7 +191,8 @@ class CricleArrayQueue {
             return;
         }
         for (int i = front; i < front + size(); i++) {
-            System.out.printf("arr[%d]=%d\n", i % maxSize, arr[i % maxSize]);
+            System.out.printf("arr[%d]=%d\n",
+                              i % maxSize, arr[i % maxSize]);
         }
 
     }
@@ -207,7 +213,102 @@ class CricleArrayQueue {
 
 ## 线性结构：链表
 
-带头节点的链表，不太
+带头节点的链表，插入有顺序的链表，首先创建一个节点类：
+
+```java
+class HeroNode {
+    public int no;
+    public String name;
+    public String nickname;
+    public HeroNode next;// 指向下一个节点
+
+    public HeroNode(int no, String name, String nickname) {
+        this.no = no;
+        this.name = name;
+        this.nickname = nickname;
+    }
+
+    @Override
+    public String toString() {
+        return "HeroNode{" +
+                "no=" + no +
+                ", name='" + name + '\'' +
+                ", nickname='" + nickname + '\'' + '}';
+    }
+}
+```
+
+无序的插入方法如下：
+
+```java
+public void add(HeroNode heroNode) {
+    HeroNode temp = head;
+    while (true) {
+        if (temp.next == null) {
+            break;
+        }
+        temp = temp.next;
+    }
+    temp.next = heroNode;
+}
+```
+
+有序的插入方法如下：
+
+首先我们需要一个变量来临时接收新加入的节点，将**新节点的next**指向temp下一个节点，将temp的下一个节点，指向新节点，这里的顺序不能改变。
+
+```java
+public void addByOrder(HeroNode heroNode) {
+    HeroNode temp = head;
+    boolean flag = false;
+    while (true) {
+        if (temp.next == null ) {
+            break;
+        }
+        if(temp.next.no>heroNode.no){
+            break;
+        }else if ((temp.next.no == heroNode.no)){
+            flag = true;
+            break;
+        }
+        temp = temp.next;
+    }
+    if(flag){
+        System.out.println("要插入的英雄的编号已经存在");
+    }else {
+        heroNode.next = temp.next;
+        temp.next = heroNode;
+    }
+}
+```
+
+链表的删除操作：
+
+我们找到链表的下一个节点与我们要删除的节点编号一致，将这个节点next指向下下一个节点，垃圾回收机制会直接删除中间的这个节点；
+
+```java
+ public void del(int no){
+       HeroNode temp = head;
+       boolean flag = false;
+       while (true){
+           if(temp.next == null){
+               break;
+           }
+           if(temp.next.no == no){
+               flag = true;
+               break;
+           }
+           temp = temp.next;
+       }
+       if (flag){
+           temp.next = temp.next.next;
+       }else {
+           System.out.println("没有找到");
+       }
+    }
+```
+
+
 
 
 
