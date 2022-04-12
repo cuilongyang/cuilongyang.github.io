@@ -1,0 +1,74 @@
+---
+layout: post
+title:  " Exercise" 
+date: 2022-04-11 20:22:26 +0800
+tags: [Java, DataStructures]
+---
+
+
+
+单链表面试题：
+
+1. 求单链表中有效节点的个数：
+
+   ```java
+   public static int getLength(HeroNode head){
+       if(head.next==null){
+           return 0;
+       }
+       int length = 0;
+       HeroNode cur = head.next;
+       while (cur!= null){
+           length++;
+           cur = cur.next;
+       }
+       return length;
+   }
+   // 注意不要统计头节点
+   ```
+
+2. 查找单链表中的倒数第k个节点：
+
+   ```java
+   public static HeroNode getIndexNode(HeroNode head, int index){
+       if(head==null){
+           return null;
+       }
+       int size = getLength(head);
+       if(index<=0||index>size){
+           return null;
+       }
+       HeroNode cur = head.next;
+       for (int i = 0; i < size - index; i++) {
+           cur = cur.next;
+       }
+       return cur;
+   }
+   ```
+
+2. 单链表的反转：
+
+   ```java
+   // 单链表反转
+   public static void reverseNode(HeroNode head){
+       if(head.next==null||head.next.next == null){
+           return ;
+       }
+       HeroNode next = null;
+       HeroNode cur = head.next;
+       HeroNode reverseHead = new HeroNode(0,null,null);
+       while (cur!= null){
+           next = cur.next; // 保存当前节点的下一个节点
+           cur.next = reverseHead.next;// cur的下一个节点，指向新链表的最前端
+           reverseHead.next = cur;// 将cur连接到新的链表上
+           cur= next;// 让cur后移
+   
+       }
+       // 将head.next指向反转列表reverseHead.next
+       head.next = reverseHead.next;
+   
+   }
+   
+   ```
+   
+   
