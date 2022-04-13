@@ -1,11 +1,9 @@
 ---
 layout: post
 title:  " Exercise" 
-date: 2022-04-11 20:22:26 +0800
-tags: [Java, DataStructures]
+date: 2022-04-12 20:22:26 +0800
+tags: [Java, Exercise]
 ---
-
-
 
 单链表面试题：
 
@@ -68,7 +66,49 @@ tags: [Java, DataStructures]
        head.next = reverseHead.next;
    
    }
-   
    ```
    
+4. 逆序打印单链表：
+
+   利用栈的数据结构，将各个节点压入到栈中，然后利用栈的先进后出的特点，实现逆序打印
+
+   ```java
+   public class StackTest {
+       public static void main(String[] args) {
+           Stack<String> stack = new Stack<>();
+           stack.add("h1");
+           stack.add("h2");
+           stack.add("h3");
+           stack.add("h4");
+           //出栈
+           while (stack.size() > 0) {
+               System.out.println(stack.pop());
+           }
+       }
+   }
+   ```
+
+   代码如下：
+
+   ```java
+   // 逆序打印单链表
+   public static void reversePrint(HeroNode head){
+       if (head.next == null){
+           return;
+       }
+       // 创建一个栈，将各个节点压入栈
+       Stack<HeroNode> stack = new Stack<>();
+       HeroNode cur = head.next;
+       while (cur!=null){
+           stack.push(cur);
+           cur=cur.next;
+       }
+       while (stack.size()>0){
+           System.out.println(stack.pop());
+       }
+   }
+   ```
+
+   
+
    
