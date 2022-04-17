@@ -4,35 +4,42 @@ title: Curriculum Vitae
 subtitle: 
 ---
 
-# Contact
+ <center>
+     <h1>崔龙阳</h1>
+ </center>
+## 个人信息 
 
-- TEl：15003820831
-- Email：cuilongyang@gmail.com 
-- Wechat：15037157
+* 性 别：男&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;年 龄：27  
+* 手 机：15919066166    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;  邮 箱：cuilongyang@gmail.com    
+* 博 客：https://cuilongyang.com  &emsp;&emsp;&emsp; 岗 位：Java开发岗
 
+## 教育经历       
 
-# Personal information
+* 景德镇陶瓷大学&emsp;&emsp;&emsp;&emsp;&emsp;2014.9~2018.7&emsp;&emsp;&emsp;&emsp;  本科         
 
- - Cui Longyang / male / 1994
- - Undergraduate / Jingdezhen Ceramic University
- - Technical blog：[cuilongyang.com]()
- - Github：[github.com/cuilongyang]()
- - Position：Java Development
- - Salary：7k~10k
+## 专业技能
 
-# Project experience
+* 熟悉Java、JavaWeb基础知识和高级知识，崇尚简洁，具有良好的代码习惯和规范。
+* 熟悉SSM、SpringBoot等开源框架的搭建和使用，能进行相关项目开发。
+* 熟悉MySQL数据库的相关操作，能进行相关CRUD操作。
+* 熟练使用IDEA开发工具、了解Git版本管理工具。
+* 熟悉使用 **Tomcat** 应用服务器的应用部署和配置，了解Redis等非关系型数据库。
 
+## 项目经历
 
-  - 
+1. 个人博客项目 - MyBlog 
+    * 
+    * 
+    * 
+    * 
+2. 图书管理系统 - Library Management System
+    * 实现添加、删除、修改图书信息，分页、按条件查询的功能
+    * 基于Spring Boot + MyBatis Plus + Vue 开发的Demo。
+    * 
+    * 演示地址：http://124.222.135.191:8888/pages/books.html
 
-    
+## 个人账号 
+* github 地址 :https://github.com/cuilongyang
 
-      
-# Skill
-- 
-- 
-      
----
-# Thanks
-Thank you for taking the time to read my resume and look forward to the opportunity to work with you.
-      
+## 致谢
+ 谨慎的勤奋带来好运。感谢您花时间阅读我的简历，期待能有机会和您共事。
