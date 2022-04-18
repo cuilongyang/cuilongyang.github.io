@@ -27,19 +27,19 @@ subtitle:
 
 ## 项目经历
 
-1. 个人博客项目 - MyBlog 
-    * 
-    * 
-    * 
-    * 
+1. 博客项目 - MyBlog 
+   * 实现文章的发表，添加修改页面等内容
+   * 基于SpringBoot + Mybatis + Thymeleaf 等技术实现的 Java 博客系统
+   * 页面发表、修改文章，修改页面图片等内容
 2. 图书管理系统 - Library Management System
-    * 实现添加、删除、修改图书信息，分页、按条件查询的功能
-    * 基于Spring Boot + MyBatis Plus + Vue 开发的Demo。
-    * 
-    * 演示地址：http://124.222.135.191:8888/pages/books.html
+   * 实现添加、删除、修改图书信息，分页、按条件查询的功能
+   * 基于Spring Boot + MyBatis Plus + Vue 开发的Demo。
+   * 演示地址：http://124.222.135.191:8888/pages/books.html
 
 ## 个人账号 
+
 * github 地址 :https://github.com/cuilongyang
 
 ## 致谢
- 谨慎的勤奋带来好运。感谢您花时间阅读我的简历，期待能有机会和您共事。
+
+ 谨慎的勤奋带来好运。感谢您花时间阅读我的简历，期待能有机会和您共事。。
