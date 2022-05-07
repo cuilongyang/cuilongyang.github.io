@@ -1,2 +1,2 @@
 # cuilongyang.github.io
-Java notes, simple blog based on Jekyll
+Java notes, simple blog based on Jekyll.
