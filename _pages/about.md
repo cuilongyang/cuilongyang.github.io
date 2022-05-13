@@ -5,11 +5,11 @@ author: "Clyde"
 permalink: /about/
 ---
 
-A friend of mine writes short stories. One sunny day, I asked if he wanted a website to showcase his works and he agreed. I decided to use GitHub Pages to host his site. That way he wouldn't have to buy a domain and a server.
+For a while I was thinking about jotting down my previous study notes for my own blog, after using Oracle's free server, which unfortunately was so slow, I decided to use GitHub Pages to host the website.
 
-While doing some research up on GitHub Pages, I accidentally chanced upon this _simple, blog-aware, static site generator_ called [Jekyll](https://jekyllrb.com/) which works really well with GitHub Pages. I figured it would do just fine for my friend and I set about searching for a pretty theme. I wanted a theme with a _book-ish_ vibe. Unfortunately, most of the themes were too modern. Eventually, I caved and begun working on my own theme. With the help of [Poole](https://github.com/poole/poole), the Jekyll Butler, I was able to build **Tale**.
+While doing some research on GitHub Pages, I stumbled upon this *simple*, *blog-aware static site generator* called [Jekyll](https://jekyllrb.com/) that works really well with GitHub Pages. So I started looking for a nice theme. Eventually I found this theme [Tale](https://github.com/chesterhow/tale). This blog is used to record my study notes. It has a very concise page, which makes me very happy. Thanks again to the original author for his help.
 
 ## Contribute
-Feel free to create an issue or make a pull request on [GitHub](https://github.com/chesterhow/tale).
+Feel free to create an issue or make a pull request on [GitHub](https://github.com/cuilongyang/cuilongyang.github.io).
 
 Thanks for reading!
