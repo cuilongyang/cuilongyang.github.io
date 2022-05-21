@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Managing Excerpt"
-author: "Chester"
-tags: Tutorial
+author: "Clyde"
+tags: Jekyll
 excerpt_separator: <!--more-->
 ---
 

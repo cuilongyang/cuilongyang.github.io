@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Example Content"
-author: "Chester"
-tags: Example
+author: "Clyde"
+tags: Jekyll
 excerpt_separator: <!--more-->
 ---
 
