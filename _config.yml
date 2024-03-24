@@ -1,40 +1,93 @@
-# Site settings
-title:          cuilongyang
-description:    " "
-url:            "https://blog.cly2.com"
+title:            风
+author:           Clyde
+description:      Be yourself and don't go with the flow.
+avatar:           /assets/img/avatar.jpg
+url:              https://cuilongyang.github.io
+icon:             /assets/img/favicon.ico
+commtent-plugin:  github # github or disqus
 
-# Google Analytics
-google_analytics: 
+typed-js:         false  # 打字机效果
 
-# Author
-author:
-  name:         Clyde
-  url:          https://github.com/cuilongyang
-  email:        cuilongyang@gmail.com
+menu:
+  - name:          首页
+    link:          /
+    target:        _self
 
-# Build settings
-markdown:       kramdown
-include:
-  - _pages
+  - name:          归档
+    link:          /archives/
+    target:        _self
 
-# Assets
+  - name:          分类
+    link:          /category/
+    target:        _self
+
+
+  - name:          关于
+    link:          /about/
+    target:        _self
+
+  - name:          RSS
+    link:          /feed.xml
+    target:        _blank
+
+lang:      zh-cmn-Hans
+timezone: Asia/Shanghai
+locale:      zh_CN
+future:      true
+
 sass:
-  sass_dir:     _sass
-  style:        compressed
+  sass_dir: _sass
+  style: compressed
 
-# Gems
-plugins:
-  - jekyll-feed
+
+paginate: 10
+paginate_path: "page/:num/"
+
+google_analytics:  
+
+google_verify:
+baidu_verify:
+
+collections:
+  tabs:
+    output: true
+
+
+defaults:
+  - scope:
+      path: "" 
+      type: posts
+    values:
+      layout: post
+      comments: true
+      permalink: /posts/:title/
+  
+  - scope:
+      path: ""
+      type: tabs # see `site.collections`
+    values:
+      layout: page
+      permalink: /:title/
+
+
+
+include: [".htaccess"]
+exclude: ["Gemfile", "Gemfile.lock", "README.md", "LICENSE", "package.json","node_modules"]
+
+gems:
   - jekyll-paginate
-  - jekyll-seo-tag
-  - jemoji #Uncomment this to allow emoji in your post
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-archives
 
-# Permalinks
-permalink:      /:year-:month-:day/:title
-paginate:       5
+plugins:
+  - jekyll-paginate
+  - jekyll-archives
 
-# Excludes
-exclude: [ Gemfile, Gemfile.lock ]
 
-# Disqus (Set to your disqus id)
-disqus:         
+jekyll-archives:
+  enabled: [categories]
+  layouts:
+    category: categories
+  permalinks:
+    category: /category/:name/

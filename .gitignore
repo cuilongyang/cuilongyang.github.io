@@ -1,7 +1,10 @@
-*.gem
-.bundle
-.DS_Store
-.sass-cache
 _site
-Gemfile.lock
+.sass-cache
+.DS_Store
+.bower_components
+.idea
+node_modules
+# Ignore the config file that's used for gh-pages.
+_config.gh-pages.yml
 .jekyll-cache
+.vscode
